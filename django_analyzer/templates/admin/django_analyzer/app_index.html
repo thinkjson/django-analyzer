@@ -1,0 +1,32 @@
+{% extends "admin/index.html" %}
+{% load i18n analyzer %}
+
+{% if not is_popup %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs"><a href="../">
+{% trans "Home" %}</a> &rsaquo;
+{% for app in app_list %}
+{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}
+{% endfor %}</div>{% endblock %}
+
+{% endif %}
+
+{% block content %}
+<table style="width: 100%; margin-bottom: 20px;">
+    <tr>
+        <td><b style="font-size: 14px;">Most active users</b>
+        {% most_active_users %}</td>
+
+        <td><b style="font-size: 14px;">Most active urls</b>
+        {% most_popular_urls %}</td>
+    </tr>
+</table>
+
+<b style="font-size: 14px;">Most recent hits</b>
+{% most_recent_hits 40 %}
+
+<a href="{% url admin:django_analyzer_analyticslog_changelist %}">View all hits</a>
+{% endblock %}
+
+{% block sidebar %}{% endblock %}

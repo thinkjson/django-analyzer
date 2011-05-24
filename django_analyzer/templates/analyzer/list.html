@@ -1,0 +1,14 @@
+<table style="width: 80%">
+<tr>
+    {% for field in fields %}
+    <th>{{ field }}</th>
+    {% endfor %}
+</tr>
+{% for result in results %}
+    <tr>
+        {% for field in result %}
+        <td>{{ field }}</td>
+        {% endfor %}
+    </tr>
+{% endfor %}
+</table>
